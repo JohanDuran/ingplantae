@@ -7,16 +7,20 @@ var chart; // global
 function requestData() {
     $.ajax({
         url: 'data.php',
-        success: function(point) {
+        success: function(points) {
+        chart.series[0].setData(points, true); 
+/*        points.forEach(function(element) {
+            console.log(element);
             var series = chart.series[0],
-                shift = series.data.length > 20; // shift if the series is 
-                                                 // longer than 20
+                    shift = series.data.length > 20; // shift if the series is 
+                                                     // longer than 20
 
-            // add the point
-            chart.series[0].addPoint(point, true, shift);
-            
-            // call it again after one second
-            setTimeout(requestData, 3000);    
+                // add the point
+                chart.series[0].addPoint(element, true, shift);
+                
+                // call it again after one second
+        }); */           
+        setTimeout(requestData, 3000);    
         },
         cache: false
     });
