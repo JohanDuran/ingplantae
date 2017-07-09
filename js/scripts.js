@@ -8,6 +8,7 @@ function requestData() {
     $.ajax({
         url: 'data.php',
         success: function(points) {
+        console.log(points);
         chart.series[0].setData(points, true); 
 /*        points.forEach(function(element) {
             console.log(element);

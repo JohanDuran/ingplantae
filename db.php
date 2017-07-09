@@ -1,4 +1,6 @@
 <?php
+header("Content-type: text/json");
+
 function connectDB(){
     try {
         $mbd = new PDO('mysql:host=localhost;dbname=ingplantaeDB', 'johanduran', '');
@@ -11,17 +13,17 @@ function connectDB(){
 
 function select($var, $mbd){
     $response = array();
-    $fecha = new DateTime();
-    $time=$fecha->getTimestamp();
-    $dia = 24 * 60 * 60;
-    $ayer=$time-$dia;
-    $hoy=$time+$dia;
-    echo date('l jS \of F Y h:i:s A');
-
-    $query=$mbd->query('SELECT '.$var.', fecha_stamp from variables where fecha_stamp BETWEEN '.$ayer.' AND '.$hoy);
+    $ayer = date ("Y-m-d H:i:s", time() - 24 * 60 * 60); 
+    $manana = date ("Y-m-d H:i:s", time() + 24 * 60 * 60);
+    $q='SELECT '.$var.', fecha_stamp from variables where fecha_stamp BETWEEN \''.$ayer.'\' AND \''.$manana.'\'';
+    $query=$mbd->query($q);
     if($query!=null){
+        $contador=0;
         foreach($query as $fila) {
-            $response[]=[$fila['fecha_stamp'],$fila['temperatura_interna']];
+            if($contador<20){
+                $response[]=[strtotime($fila['fecha_stamp'])*1000,floatval($fila['temperatura_interna'])];
+                $contador++;
+            }
         }
         $mbd = null;        
         return $response;

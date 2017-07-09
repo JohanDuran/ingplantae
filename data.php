@@ -5,6 +5,7 @@ require 'db.php';
 	//conexión a la BD
 	$conexion=connectDB();
 	if($conexion!=null){
-		echo json_encode(select('temperatura_interna',$conexion));
+		$data=json_encode(select('temperatura_interna',$conexion));
+		echo str_replace(' ', '', $data);
 	}
 ?>
