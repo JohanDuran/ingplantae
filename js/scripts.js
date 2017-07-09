@@ -37,7 +37,7 @@ $(document).ready(function() {
             }
         },
         title: {
-            text: 'Live random data'
+            text: 'Temperatura'
         },
         xAxis: {
             type: 'datetime',

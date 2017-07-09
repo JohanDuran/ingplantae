@@ -14,7 +14,7 @@
 	<div class="container-fluid">
 		 <div class="color-uno">
 			<div class="nameIP">IngPlantae </div><br><br><br>
-			<div class="titleIP">Corcovado 2.0</div> 
+			<div class="titleIP">Corcovado 1.0</div> 
 			<div class="descriptionIP">Tecnología agrícola para el trópico</div> 
 		 </div> 
 		 <div class="line"></div>
