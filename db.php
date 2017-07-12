@@ -20,10 +20,14 @@ function select($var, $mbd){
     if($query!=null){
         $contador=0;
         foreach($query as $fila) {
-            if($contador<20){
-                $response[]=[strtotime($fila['fecha_stamp'])*1000,floatval($fila['temperatura_interna'])];
-                $contador++;
-            }
+            //if($contador<20){
+            $response[]=[strtotime($fila['fecha_stamp'])*1000,floatval($fila[$var])];
+            $contador++;
+            //}
+        }
+        $cantidadElem = count($response);
+        if($cantidadElem>20){
+            array_splice($response,0,$cantidadElem-20);
         }
         $mbd = null;        
         return $response;
